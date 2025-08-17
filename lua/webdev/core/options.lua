@@ -1,5 +1,7 @@
 -- Set tree view to show tree
-vim.cmd("let g:netrw_liststyle = 3")
+vim.cmd 'let g:netrw_liststyle = 3'
+vim.opt.termguicolors = true
+vim.diagnostic.config { virtual_text = true }
 
 -- Set <space> as the leader key
 -- See `:help mapleader`
@@ -32,7 +34,7 @@ vim.opt.showmode = false
 --  Remove this option if you want your OS clipboard to remain independent.
 --  See `:help 'clipboard'`
 vim.schedule(function()
-	vim.opt.clipboard = 'unnamedplus'
+  vim.opt.clipboard = 'unnamedplus'
 end)
 
 -- Enable break indent
@@ -73,3 +75,15 @@ vim.opt.cursorline = true
 
 -- Minimal number of screen lines to keep above and below the cursor.
 vim.opt.scrolloff = 8
+
+vim.api.nvim_create_autocmd({ 'BufEnter', 'VimEnter' }, {
+  pattern = 'NvimTree*',
+  callback = function()
+    vim.cmd [[
+			highlight NvimTreeNormal guibg=NONE ctermbg=NONE
+			highlight NvimTreeNormalNC guibg=NONE ctermbg=NONE
+			highlight NvimTreeEndOfBuffer guibg=NONE ctermbg=NONE
+			highlight NvimTreeVertSplit guibg=NONE ctermbg=NONE
+		]]
+  end,
+})

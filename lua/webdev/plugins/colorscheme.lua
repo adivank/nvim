@@ -10,5 +10,8 @@ return {
 
     -- You can configure highlights by doing something like:
     vim.cmd.hi 'Comment gui=none'
+    vim.cmd.hi 'LineNr guifg=#37c5b0'
+    vim.cmd.hi 'LineNrAbove guifg=#37c5b0'
+    vim.cmd.hi 'LineNrBelow guifg=#37c5b0'
   end,
 }
